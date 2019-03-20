@@ -15,7 +15,7 @@ public class AimPractice extends Application {
 	private BorderPane pane = new BorderPane();
 	
 	// creates a circle object with radius of 10
-	private Circle circle = new Circle(10);
+	private static Circle circle = new Circle(10);
 	
 	// x and y coordinates
 	private static int x; private static int y;
@@ -52,9 +52,11 @@ public class AimPractice extends Application {
 			// gets rid of button to make room for the targets
 			pane.getChildren().clear();
 			
-			// adds a circle randomly located in the pane
-			insertCircle(circle, pane);
+			// creates a circle with a random color and random (x, y) coordinate
+			changeCircle(circle, pane);
 			
+			// adds the circle to the pane
+			pane.getChildren().add(circle);
 			// whenever the start button is clicked, start the "timer"
 			start = new Date(System.currentTimeMillis());
 		});
@@ -63,11 +65,8 @@ public class AimPractice extends Application {
 		circle.setOnMouseClicked(e -> {
 			if (count < 19) {
 				
-				// clears the pane for each iteration
-				pane.getChildren().clear();
-				
-				// adds a random circle
-				insertCircle(circle, pane);
+				// moves the circle to a random location in the pane with another random color
+				changeCircle(circle, pane);
 				
 				// increases our counter
 				count++;
@@ -97,7 +96,7 @@ public class AimPractice extends Application {
 	}
 	
 	// inserts a circle into a random spot on the pane with a random color 
-	public static void insertCircle(Circle circle, BorderPane pane) {
+	public static void changeCircle(Circle circle, BorderPane pane) {
 		
 		// random rgb ints between 0 - 255 to put into rgb() method
 		int red = (int) (Math.random()*256);
@@ -116,9 +115,6 @@ public class AimPractice extends Application {
 		y = (int) (Math.random() * ((pane.getHeight() - (2 * circle.getRadius())) + 1) + circle.getRadius());
 		circle.setCenterX(x);
 		circle.setCenterY(y);
-		
-		// adds a new circle since the previous circle was cleared
-		pane.getChildren().add(circle);
 	}
 	
 	public static void main(String[] args) {
