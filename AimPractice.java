@@ -2,6 +2,7 @@ import java.util.Date;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -21,7 +22,10 @@ public class AimPractice extends Application {
 	private static int count = 0;
 	
 	// creates a text object
-	private Text text = new Text();
+	private Text timerText = new Text();
+	
+	// a button that starts the program
+	private Button startButton = new Button();
 	
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -30,6 +34,7 @@ public class AimPractice extends Application {
 		
 		// whenever the program is first ran it creates an object with that start time
 		Date start = new Date(System.currentTimeMillis());
+		
 		
 		// when circle is clicked 20 times it clears the pane and prints out the time it took in millis
 		circle.setOnMouseClicked(e -> {
@@ -53,10 +58,10 @@ public class AimPractice extends Application {
 				pane.getChildren().clear();
 				
 				// prints out end time - start time
-				text.setText("Time spent is " + ((end.getTime() - start.getTime()) / 1000.0) + " seconds");
+				timerText.setText("Time spent is " + ((end.getTime() - start.getTime()) / 1000.0) + " seconds");
 				
 				// puts the text into the center
-				pane.setCenter(text);
+				pane.setCenter(timerText);
 			}
 		});
 	
