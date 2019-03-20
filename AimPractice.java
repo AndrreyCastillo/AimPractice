@@ -1,5 +1,4 @@
 import java.util.Date;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,22 +17,42 @@ public class AimPractice extends Application {
 	// creates a circle object with radius of 10
 	private Circle circle = new Circle(10);
 	
-	// creates a counter so we can check circle clicks
-	private static int count = 0;
-	
 	// creates a text object
 	private Text timerText = new Text();
 	
 	// a button that starts the program
-	private Button startButton = new Button();
+	private Button startButton = new Button("Start");
+	
+	// start time
+	private Date start;
+	
+	// end time
+	private Date end;
+	
+	// creates a counter so we can check circle clicks
+	private static int count = 0;
 	
 	public void start(Stage primaryStage) throws Exception {
 		
-		// adds a random circle
-		insertCircle(circle, pane);
+		// changes the size of the button so it can be easily clicked
+		startButton.setMaxSize(100, 50);
 		
-		// whenever the program is first ran it creates an object with that start time
-		Date start = new Date(System.currentTimeMillis());
+		// adds the start button to the pane
+		pane.setCenter(startButton);
+		
+		// when the start button is clicked
+		startButton.setOnMouseClicked(e -> {
+			
+			// gets rid of button to make room for the targets
+			pane.getChildren().clear();
+			
+			// adds a random circle
+			insertCircle(circle, pane);
+			
+			// whenever the program is first ran it creates an object with that start time
+			start = new Date(System.currentTimeMillis());
+		});
+		
 		
 		
 		// when circle is clicked 20 times it clears the pane and prints out the time it took in millis
@@ -52,7 +71,7 @@ public class AimPractice extends Application {
 			else {
 				
 				// creates a Date object that has the finished time
-				Date end = new Date(System.currentTimeMillis());
+				end = new Date(System.currentTimeMillis());
 				
 				// clears the last circle to make room for text
 				pane.getChildren().clear();
