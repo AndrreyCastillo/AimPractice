@@ -3,9 +3,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -17,8 +17,14 @@ public class AimPractice extends Application {
 	// creates a circle object with radius of 10
 	private Circle circle = new Circle(10);
 	
+	// x and y coordinates
+	private static int x; private static int y;
+	
 	// creates a text object
 	private Text timerText = new Text();
+	
+	// new font size to set timerText
+	private Font timerFont = new Font(25);
 	
 	// a button that starts the program
 	private Button startButton = new Button("Start");
@@ -46,14 +52,12 @@ public class AimPractice extends Application {
 			// gets rid of button to make room for the targets
 			pane.getChildren().clear();
 			
-			// adds a random circle
+			// adds a circle randomly located in the pane
 			insertCircle(circle, pane);
 			
-			// whenever the program is first ran it creates an object with that start time
+			// whenever the start button is clicked, start the "timer"
 			start = new Date(System.currentTimeMillis());
 		});
-		
-		
 		
 		// when circle is clicked 20 times it clears the pane and prints out the time it took in millis
 		circle.setOnMouseClicked(e -> {
@@ -70,15 +74,17 @@ public class AimPractice extends Application {
 			}
 			else {
 				
-				// creates a Date object that has the finished time
-				end = new Date(System.currentTimeMillis());
-				
 				// clears the last circle to make room for text
 				pane.getChildren().clear();
 				
+				// sets end to the finished time
+				end = new Date(System.currentTimeMillis());
+		
 				// prints out end time - start time
-				timerText.setText("Time spent is " + ((end.getTime() - start.getTime()) / 1000.0) + " seconds");
+				timerText.setText("Your Time Was " + ((end.getTime() - start.getTime()) / 1000.0) + " Seconds!");
 				
+				
+				timerText.setFont(timerFont);
 				// puts the text into the center
 				pane.setCenter(timerText);
 			}
@@ -88,18 +94,28 @@ public class AimPractice extends Application {
 		primaryStage.setTitle("Hand-Eye Coordination");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
 	}
 	
 	// inserts a circle into a random spot on the pane with a random color 
-	public static void insertCircle(Circle circle, Pane pane) {
+	public static void insertCircle(Circle circle, BorderPane pane) {
+		
+		// random rgb ints between 0 - 255 to put into rgb() method
+		int red = (int) (Math.random()*256);
+		int green = (int) (Math.random()*256);
+		int blue = (int) (Math.random()*256);
+		
+		// sets the random colors to the instanced circle
+		// made it dark colors so that the user has an easier time viewing the circle
+		circle.setFill(Color.rgb(red, green, blue).darker());
 		
 		// finds a new random location for the circle for each click
-		circle.centerXProperty().bind(pane.widthProperty().subtract(pane.widthProperty().multiply(Math.random()).subtract(circle.getRadius()).add(20)));
-		circle.centerYProperty().bind(pane.heightProperty().subtract(pane.heightProperty().multiply(Math.random()).subtract(circle.getRadius()).add(20)));;
-		
-		// gets a new random color for each click
-		circle.setFill(Color.rgb((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256)));
+		// high bound is panewidth - circle radius
+		// low bound is circle radius
+		// 2x the radius to make sure it is in bounds
+		x = (int) (Math.random() * ((pane.getWidth() - (2 * circle.getRadius())) + 1) + circle.getRadius());
+		y = (int) (Math.random() * ((pane.getHeight() - (2 * circle.getRadius())) + 1) + circle.getRadius());
+		circle.setCenterX(x);
+		circle.setCenterY(y);
 		
 		// adds a new circle since the previous circle was cleared
 		pane.getChildren().add(circle);
