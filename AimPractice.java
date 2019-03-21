@@ -132,15 +132,14 @@ public class AimPractice extends Application {
 		// high bound is panewidth - circle radius
 		// low bound is circle radius
 		// 2x the radius to make sure it is in bounds
-		x = (int) (Math.random() * ((circlePane.getWidth() - (2 * circle.getRadius())) + 1) + (2 *circle.getRadius()));
-		y = (int) (Math.random() * ((circlePane.getHeight() - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
+		x = (int) (Math.random() * ((pane.getWidth() - (2 * circle.getRadius())) + 1) + (2 *circle.getRadius()));
+		y = (int) (Math.random() * ((pane.getHeight() - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
 		circle.setCenterX(x);
 		circle.setCenterY(y);
 	}
 	
 	/* When an action is performed on the start button */
 	private static void startAction() {
-
 		
 		// gets rid of button to make room for the targets and counter text in the corner
 		mainPane.getChildren().clear();
