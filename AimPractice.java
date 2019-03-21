@@ -117,7 +117,7 @@ public class AimPractice extends Application {
 	}
 	
 	/* moves the same circle to a different location and also fills it with a random color */
-	private static void changeCircle(Circle circle, Pane pane) {
+	private static void changeCircle(Circle circle, BorderPane pane) {
 		
 		// random rgb ints between 0 - 255 to put into rgb() method
 		int red = (int) (Math.random()*256);
@@ -132,8 +132,9 @@ public class AimPractice extends Application {
 		// high bound is panewidth - circle radius
 		// low bound is circle radius
 		// 2x the radius to make sure it is in bounds
-		x = (int) (Math.random() * ((pane.getWidth() - (2 * circle.getRadius())) + 1) + (2 *circle.getRadius()));
-		y = (int) (Math.random() * ((pane.getHeight() - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
+		// (int) (Math.random() * ((upper - lower) + 1) + lower)
+		x = (int) (Math.random() * (((pane.getWidth() - (circle.getRadius())) - (circle.getRadius())) + 1) + (circle.getRadius()));
+		y = (int) (Math.random() * (((pane.getHeight() - (2 * circle.getRadius())) - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
 		circle.setCenterX(x);
 		circle.setCenterY(y);
 	}
