@@ -1,8 +1,11 @@
 import java.util.Date;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
@@ -11,24 +14,24 @@ import javafx.stage.Stage;
 
 public class AimPractice extends Application {
 	
-	// creates a pane
 	private BorderPane pane = new BorderPane();
 	
 	// creates a circle object with radius of 10
 	private static Circle circle = new Circle(10);
 	
-	// x and y coordinates
+	// x and y coordinates for the circle so we can change it later
 	private static int x; private static int y;
 	
-	// creates a text object
-	private Text timerText = new Text();
-	
-	// new font size to set timerText
-	private Font timerFont = new Font(25);
-	
-	// a button that starts the program
+	// Start Screen Stuff
+	private Text welcomeText = new Text("Practice Your Aim!");
+	private Font welcomeFont = new Font(40);
+	private VBox welcomeTextArea = new VBox(welcomeText);
 	private Button startButton = new Button("Start");
-	
+
+	// text to display timer later
+	private Text timerText = new Text();
+	private Font timerFont = new Font(25);
+
 	// start time
 	private Date start;
 	
@@ -43,10 +46,15 @@ public class AimPractice extends Application {
 		// changes the size of the button so it can be easily clicked
 		startButton.setMaxSize(100, 50);
 		
+		// increases the size of the text to 50
+		welcomeText.setFont(welcomeFont);
+		welcomeTextArea.setPadding(new Insets(50, 0, 0, 0));
+		welcomeTextArea.setAlignment(Pos.CENTER);
+		pane.setTop(welcomeTextArea);
+		
 		// adds the start button to the pane
 		pane.setCenter(startButton);
-		
-		// when the start button is clicked
+	
 		startButton.setOnMouseClicked(e -> {
 			
 			// gets rid of button to make room for the targets
@@ -54,14 +62,13 @@ public class AimPractice extends Application {
 			
 			// creates a circle with a random color and random (x, y) coordinate
 			changeCircle(circle, pane);
-			
-			// adds the circle to the pane
 			pane.getChildren().add(circle);
+			
 			// whenever the start button is clicked, start the "timer"
 			start = new Date(System.currentTimeMillis());
 		});
 		
-		// when circle is clicked 20 times it clears the pane and prints out the time it took in millis
+		// when circle is clicked 20 times it clears the pane and prints out the time taken
 		circle.setOnMouseClicked(e -> {
 			if (count < 19) {
 				
@@ -81,9 +88,8 @@ public class AimPractice extends Application {
 		
 				// prints out end time - start time
 				timerText.setText("Your Time Was " + ((end.getTime() - start.getTime()) / 1000.0) + " Seconds!");
-				
-				
 				timerText.setFont(timerFont);
+				
 				// puts the text into the center
 				pane.setCenter(timerText);
 			}
@@ -95,7 +101,7 @@ public class AimPractice extends Application {
 		primaryStage.show();
 	}
 	
-	// inserts a circle into a random spot on the pane with a random color 
+	/* moves the same circle to a different location and also fills it with a random color */
 	public static void changeCircle(Circle circle, BorderPane pane) {
 		
 		// random rgb ints between 0 - 255 to put into rgb() method
