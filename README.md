@@ -3,7 +3,7 @@
 
 ----
 
-to run, cd into the AimPractice folder, copy and paste this bad boy:
+To run, cd into the AimPractice folder; copy and paste this bad boy:
 
 `
 java -jar --module-path <path-to-javafx-sdk-13>/lib --add-modules javafx.controls,javafx.fxml ./out/artifacts/AimPractice_jar/AimPractice.jar 
