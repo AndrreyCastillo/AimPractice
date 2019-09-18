@@ -9,11 +9,8 @@ import java.util.Date;
 
 public class Controller {
 
-    // x and y coordinates for the circle so we can change it later
-    private static int x; private static int y;
-
     /* moves the same circle to a different location and also fills it with a random color */
-    protected static void changeCircle(Circle circle, BorderPane pane) {
+    static void changeCircle(Circle circle, BorderPane pane) {
 
         // random rgb ints between 0 - 255 to put into rgb() method
         int red = (int) (Math.random()*256);
@@ -25,18 +22,19 @@ public class Controller {
         circle.setFill(Color.rgb(red, green, blue).darker());
 
         // finds a new random location for the circle for each click
-        // high bound is panewidth - circle radius
+        // high bound is pane width - circle radius
         // low bound is circle radius
         // 2x the radius to make sure it is in bounds
         // (int) (Math.random() * ((upper - lower) + 1) + lower)
-        x = (int) (Math.random() * (((pane.getWidth() - (circle.getRadius())) - (circle.getRadius())) + 1) + (circle.getRadius()));
-        y = (int) (Math.random() * (((pane.getHeight() - (2 * circle.getRadius())) - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
+        // x and y coordinates for the circle so we can change it later
+        int x = (int) (Math.random() * (((pane.getWidth() - (circle.getRadius())) - (circle.getRadius())) + 1) + (circle.getRadius()));
+        int y = (int) (Math.random() * (((pane.getHeight() - (2 * circle.getRadius())) - (2 * circle.getRadius())) + 1) + (2 * circle.getRadius()));
         circle.setCenterX(x);
         circle.setCenterY(y);
     }
 
     /* When an action is performed on the start button */
-    protected static void startAction() {
+    static void startAction() {
 
         // gets rid of button to make room for the targets and counter text in the corner
         Main.mainPane.getChildren().clear();

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
@@ -20,19 +19,19 @@ import java.util.Date;
 
 public class Main extends Application {
 
-    protected static BorderPane mainPane = new BorderPane();
+    static BorderPane mainPane = new BorderPane();
 
     // this pane is to put all the circles on
-    protected static Pane circlePane = new Pane();
+    static Pane circlePane = new Pane();
 
     // creates a circle object with radius of 10
-    protected static Circle circle = new Circle(10);
+    static Circle circle = new Circle(10);
 
     // start time
-    protected static Date start;
+    static Date start;
 
     // a counter so we can check circle clicks
-    protected static int count = 0;
+    static int count = 0;
 
     // Start Screen Stuff
     private Text welcomeText = new Text("Practice Your Aim!");
@@ -51,7 +50,7 @@ public class Main extends Application {
     private static int misclicks = 0;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         // changes the size of the button so it can be easily clicked
         startButton.setMaxSize(100, 50);
 
@@ -65,9 +64,7 @@ public class Main extends Application {
         mainPane.setCenter(startButton);
 
         // when the start button is clicked
-        startButton.setOnMouseClicked(e -> {
-            Controller.startAction();
-        });
+        startButton.setOnMouseClicked(e -> Controller.startAction());
 
         // when the enter key is pressed on the start button
         startButton.setOnKeyPressed(e -> {
@@ -107,9 +104,7 @@ public class Main extends Application {
             }
         });
 
-        circlePane.setOnMouseClicked(e -> {
-            misclicks++;
-        });
+        circlePane.setOnMouseClicked(e -> misclicks++);
 
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hand-Eye Coordination");
