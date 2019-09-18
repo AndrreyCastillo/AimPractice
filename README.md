@@ -1,5 +1,5 @@
 # AimPractice
-## A program that helps users practice their mouse/click accuracy 
+## A program that helps users practice their click accuracy 
 * using JavaFX 13
 * using Java sdk 13
 * Might play around with JavaFX scene builder
