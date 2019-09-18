@@ -17,12 +17,23 @@ I have no idea how to remove the module dependancies 😬
 
 ----
 
-
 * Using JavaFX 13
 * Using Java SDK 13
 * Might play around with JavaFX Scene Builder
 * Still need to move UI implementations to xfml (pls help)
 * Also I'm not sure what the project structure should be. Everything is named sample lol.
 * Using Intellij IDEA 2019.2.2
+
+----
+
+(actual size if you're on a 1920x1080 display, I think)
+
+![](/media/StartupProgram.png)
+
+![](/media/AimPractice.gif)
+
+I was so fast that you couldn't even see my mouse
+
+----
 
 ### Lots of room for improvment
