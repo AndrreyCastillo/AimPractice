@@ -24,4 +24,5 @@ I have no idea how to remove the module dependancies 😬
 * Still need to move UI implementations to xfml (pls help)
 * Also I'm not sure what the project structure should be. Everything is named sample lol.
 * Using Intellij IDEA 2019.2.2
+
 ### Lots of room for improvment
