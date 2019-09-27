@@ -1,6 +1,13 @@
 package sample;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -9,8 +16,29 @@ import java.util.Date;
 
 public class Controller {
 
+    /*
+     * FXML Variables
+     */
+    @FXML
+    private Text text;
+    @FXML
+    private BorderPane mainPane;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Pane circlePane;
+    @FXML
+    private Text timerText;
+    @FXML
+    private Circle circle;
+
+    private int count = 0;
+    private int missclicks = 0;
+    private Date start;
+
+
     /* moves the same circle to a different location and also fills it with a random color */
-    static void changeCircle(Circle circle, BorderPane pane) {
+    private void changeCircle(Circle circle, BorderPane pane) {
 
         // random rgb ints between 0 - 255 to put into rgb() method
         int red = (int) (Math.random()*256);
@@ -34,18 +62,78 @@ public class Controller {
     }
 
     /* When an action is performed on the start button */
-    static void startAction() {
+    private void startAction() {
 
-        // gets rid of button to make room for the targets and counter text in the corner
-        Main.mainPane.getChildren().clear();
-        Main.mainPane.setTop(new Text(" " + Main.count));
-        Main.mainPane.setCenter(Main.circlePane);
+        //Clear text
+        text.setText("");
 
-        // creates a circle with a random color and random (x, y) coordinate
-        changeCircle(Main.circle, Main.mainPane);
-        Main.circlePane.getChildren().add(Main.circle);
+        //Set StartButton to "not visible"
+        startButton.setVisible(false);
+
+        //Visible FXML Elements considering circles
+        circlePane.setVisible(true);
+        circle.setVisible(true);
+
+        //randomize first circle
+        changeCircle(circle, mainPane);
 
         // whenever the start button is clicked, start the "timer"
-        Main.start = new Date(System.currentTimeMillis());
+        start = new Date(System.currentTimeMillis());
+    }
+
+    @FXML
+	private void startButtonPressed(ActionEvent actionEvent)
+	{
+	    startAction();
+	}
+
+	@FXML
+    public void mainPaneKeyPressed(KeyEvent keyEvent)
+    {
+        //Enter Pressed (Set on mainPane in case of startButton loosing focus)
+        if(keyEvent.getCode() == KeyCode.ENTER)
+        {
+            startAction();
+        }
+    }
+
+    @FXML
+    public void circleMouseClicked(MouseEvent mouseEvent)
+    {
+        if(count < 19)
+        {
+            //Increment count and set text to count
+            ++count;
+            text.setText(" " + count);
+
+            //randomize circle
+            changeCircle(circle, mainPane);
+        }
+        else
+        {
+            //Set not needed elements to not visible
+            circlePane.setVisible(false);
+            text.setVisible(false);
+
+            // subtracts misclicks and count because I think the circles when clicked are counted as the pane
+            missclicks -= count;
+
+            // sets end to the finished time
+            Date end = new Date(System.currentTimeMillis());
+
+            // prints out end time - start time
+            timerText.setText("Time: " + ((end.getTime() - start.getTime()) / 1000.0) + " Seconds\n" +
+                    "Misclicks: " + missclicks);
+
+            //Show result
+            timerText.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void circlePaneMouseClicked(MouseEvent mouseEvent)
+    {
+        //Increment missclicks
+        ++missclicks;
     }
 }
