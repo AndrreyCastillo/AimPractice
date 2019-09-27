@@ -1,0 +1,36 @@
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller" onKeyPressed="#mainPaneKeyPressed" fx:id="mainPane">
+            <top>
+                <VBox>
+                    <Text fx:id="text" text="Practice Your Aim!">
+                        <font>
+                            <Font size="40.0" />
+                        </font>
+                    </Text>
+                </VBox>
+            </top>
+            <center>
+                <StackPane>
+                    <children>
+                        <Text fx:id="timerText" visible="false">
+                            <font>
+                                <Font size="40.0" />
+                            </font>
+                        </Text>
+                        <Pane fx:id="circlePane" onMouseClicked="#circlePaneMouseClicked" visible="false">
+                            <Circle fx:id="circle" onMouseClicked="#circleMouseClicked" visible="false" radius="10.0" />
+                        </Pane>
+                        <Button text="Start" fx:id="startButton" onAction="#startButtonPressed" maxWidth="100.0" maxHeight="50.0" />
+                    </children>
+                </StackPane>
+
+            </center>
+        </BorderPane>
