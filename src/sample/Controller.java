@@ -12,6 +12,8 @@ public class Controller {
     /* moves the same circle to a different location and also fills it with a random color */
     static void changeCircle(Circle circle, BorderPane pane) {
 
+        DifficultyTimer.initialize();
+
         // random rgb ints between 0 - 255 to put into rgb() method
         int red = (int) (Math.random()*256);
         int green = (int) (Math.random()*256);
