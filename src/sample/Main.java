@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -47,7 +48,8 @@ public class Main extends Application {
 
     // End Screen Stuff
     private Button homeButton = new Button("Home");
-    private VBox endScreenButtons = new VBox(homeButton);
+    private Button restartButton = new Button("Restart");
+    private HBox endScreenButtons = new HBox(homeButton, restartButton);
 
     // end time
     private Date end;
@@ -60,6 +62,7 @@ public class Main extends Application {
         // changes the size of the button so it can be easily clicked
         startButton.setPrefSize(100, 50);
         homeButton.setPrefSize(100, 50);
+        restartButton.setPrefSize(100, 50);
 
         // increases the size of the text to 50
         welcomeText.setFont(welcomeFont);
@@ -68,6 +71,7 @@ public class Main extends Application {
         welcomeTextArea.setPadding(new Insets(150, 0, 0, 0));
         welcomeTextArea.setAlignment(Pos.CENTER);
 
+        endScreenButtons.setSpacing(25);
         endScreenButtons.setPadding(new Insets(0, 0, 150, 0));
         endScreenButtons.setAlignment(Pos.CENTER);
 
@@ -89,10 +93,20 @@ public class Main extends Application {
             }
         });
 
-        // when the start button is clicked
+        // when the restart button is clicked
+        restartButton.setOnMouseClicked(e -> Controller.startAction());
+
+        // when the enter key is pressed on the restart button
+        restartButton.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                Controller.startAction();
+            }
+        });
+
+        // when the end button is clicked
         homeButton.setOnMouseClicked(e -> showHome());
 
-        // when the enter key is pressed on the start button
+        // when the enter key is pressed on the end button
         homeButton.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 showHome();
