@@ -38,30 +38,46 @@ public class Main extends Application {
     private Font welcomeFont = new Font(40);
     private VBox welcomeTextArea = new VBox(welcomeText);
     private Button startButton = new Button("Start");
+    private VBox startButtonContainer = new VBox(startButton);
 
     // text to display timer later
     private Text timerText = new Text();
     private Font timerFont = new Font(25);
+    private VBox timerContainer = new VBox(timerText);
+
+    // End Screen Stuff
+    private Button homeButton = new Button("Home");
+    private VBox endScreenButtons = new VBox(homeButton);
 
     // end time
     private Date end;
 
     // a counter for whenever the circle is missed
-    private static int misclicks = 0;
+    static int misclicks = 0;
 
     @Override
     public void start(Stage primaryStage) {
         // changes the size of the button so it can be easily clicked
-        startButton.setMaxSize(100, 50);
+        startButton.setPrefSize(100, 50);
+        homeButton.setPrefSize(100, 50);
 
         // increases the size of the text to 50
         welcomeText.setFont(welcomeFont);
-        welcomeTextArea.setPadding(new Insets(50, 0, 0, 0));
-        welcomeTextArea.setAlignment(Pos.CENTER);
-        mainPane.setTop(welcomeTextArea);
 
-        // adds the start button to the pane
-        mainPane.setCenter(startButton);
+        // Paddings
+        welcomeTextArea.setPadding(new Insets(150, 0, 0, 0));
+        welcomeTextArea.setAlignment(Pos.CENTER);
+
+        endScreenButtons.setPadding(new Insets(0, 0, 150, 0));
+        endScreenButtons.setAlignment(Pos.CENTER);
+
+        timerContainer.setPadding(new Insets(150, 0, 0, 0));
+        timerContainer.setAlignment(Pos.CENTER);
+
+        startButtonContainer.setPadding(new Insets(0, 0, 150, 0));
+        startButtonContainer.setAlignment(Pos.CENTER);
+
+        showHome();
 
         // when the start button is clicked
         startButton.setOnMouseClicked(e -> Controller.startAction());
@@ -70,6 +86,16 @@ public class Main extends Application {
         startButton.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 Controller.startAction();
+            }
+        });
+
+        // when the start button is clicked
+        homeButton.setOnMouseClicked(e -> showHome());
+
+        // when the enter key is pressed on the start button
+        homeButton.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                showHome();
             }
         });
 
@@ -100,7 +126,9 @@ public class Main extends Application {
                 timerText.setFont(timerFont);
 
                 // puts the text into the center
-                mainPane.setCenter(timerText);
+                mainPane.setTop(timerContainer);
+
+                mainPane.setBottom(endScreenButtons);
             }
         });
 
@@ -111,6 +139,17 @@ public class Main extends Application {
         Scene scene = new Scene(mainPane, 500, 500);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void showHome() {
+        // clears the last circle to make room for text
+        mainPane.getChildren().clear();
+
+        // Set welcome text
+        mainPane.setTop(welcomeTextArea);
+
+        // adds the start button to the pane
+        mainPane.setBottom(startButtonContainer);
     }
 
 

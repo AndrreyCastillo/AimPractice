@@ -41,6 +41,9 @@ public class Controller {
         Main.mainPane.setTop(new Text(" " + Main.count));
         Main.mainPane.setCenter(Main.circlePane);
 
+        Main.count = 0;
+        Main.misclicks = 0;
+
         // creates a circle with a random color and random (x, y) coordinate
         changeCircle(Main.circle, Main.mainPane);
         Main.circlePane.getChildren().add(Main.circle);
