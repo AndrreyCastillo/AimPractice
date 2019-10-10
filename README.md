@@ -3,24 +3,13 @@
 
 ----
 
-To run, cd into the AimPractice folder; copy and paste this bad boy:
-
-`
-java -jar --module-path <path-to-javafx-sdk-13>/lib --add-modules javafx.controls,javafx.fxml ./out/artifacts/AimPractice_jar/AimPractice.jar 
-`
-
-make sure to change `<path-to-javafx-sdk-13>` to your actual path
-
-I have no idea how to remove the module dependancies 😬
-
-[Download JavaFX here](https://gluonhq.com/products/javafx/)
+To run, just go into Main.java and run the main(String[] args) method.
 
 ----
 
-* Using JavaFX 13
-* Using Java SDK 13
+* Using Java SDK 8
 * Might play around with JavaFX Scene Builder
-* Still need to move UI implementations to xfml (pls help)
+* Still need to move UI implementations to fxml (pls help)
 * Also I'm not sure what the project structure should be. Everything is named sample lol.
 * Using Intellij IDEA 2019.2.2
 
