@@ -49,6 +49,10 @@ public class Main extends Application {
     // a counter for whenever the circle is missed
     private static int misclicks = 0;
 
+    //End screen buttons
+    private Button restartButton = new Button("Restart");
+    private VBox restartButtonArea = new VBox(restartButton);
+
     @Override
     public void start(Stage primaryStage) {
         // changes the size of the button so it can be easily clicked
@@ -73,6 +77,24 @@ public class Main extends Application {
             }
         });
 
+        // when the restart button is clicked
+        restartButton.setOnMouseClicked(e -> {
+            // resets count and misclicks back to 0 for the new run
+            count = 0;
+            misclicks = 0;
+            Controller.startAction();
+        });
+
+        // when the enter key is pressed on the restart button
+        restartButton.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                // resets count and misclicks back to 0 for the new run
+                count = 0;
+                misclicks = 0;
+                Controller.startAction();
+            }
+        });
+
         //when circle is clicked 20 times it clears the pane and prints out the time taken
         circle.setOnMouseClicked(e -> {
             if (count < 19) {
@@ -89,7 +111,7 @@ public class Main extends Application {
                 misclicks -= count;
 
                 // clears the last circle to make room for text
-                mainPane.getChildren().clear();
+                circlePane.getChildren().clear();
 
                 // sets end to the finished time
                 end = new Date(System.currentTimeMillis());
@@ -101,6 +123,12 @@ public class Main extends Application {
 
                 // puts the text into the center
                 mainPane.setCenter(timerText);
+
+                //aligns and displays the restart button
+                restartButtonArea.setPadding(new Insets(0, 10, 10, 0));
+                restartButtonArea.setAlignment(Pos.BOTTOM_RIGHT);
+                restartButton.setPrefSize(100, 50);
+                mainPane.setBottom(restartButtonArea);
             }
         });
 
