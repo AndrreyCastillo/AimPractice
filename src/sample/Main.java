@@ -1,7 +1,17 @@
 package sample;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,8 +24,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Date;
 
 public class Main extends Application {
 
@@ -82,8 +90,7 @@ public class Main extends Application {
 
                 // increases counter and display it in the corner
                 mainPane.setTop(new Text(" " + (++count)));
-            }
-            else {
+            } else {
 
                 // subtracts misclicks and count because I think the circles when clicked are counted as the pane
                 misclicks -= count;
@@ -95,12 +102,48 @@ public class Main extends Application {
                 end = new Date(System.currentTimeMillis());
 
                 // prints out end time - start time
-                timerText.setText("Time: " + ((end.getTime() - start.getTime()) / 1000.0) + " Seconds\n" +
-                        "Misclicks: " + misclicks);
+                float time = (end.getTime() - start.getTime()) / 1000.0f;
+                timerText.setText("Time: " + time + " Seconds\n" + "Misclicks: " + misclicks);
                 timerText.setFont(timerFont);
 
                 // puts the text into the center
                 mainPane.setCenter(timerText);
+
+                // Top Ten
+                File highScoreFile = new File("highscores.txt");
+                try {
+                    highScoreFile.createNewFile();
+                    BufferedReader br = new BufferedReader(new FileReader(highScoreFile));
+                    ArrayList<Float> highScores = new ArrayList<>();
+
+                    // Read all stored records, and calculate their scores (given the currently defined score function)
+                    while (br.ready()) {
+                        String[] record = br.readLine().split(" ");
+                        float record_time = Float.valueOf(record[0]);
+                        int record_misclicks = Integer.valueOf(record[1]);
+                        highScores.add(score(record_time, record_misclicks));
+                    }
+
+                    // Add to these scores the current score and sort from high to low.
+                    float currentScore = score(time, misclicks);
+                    highScores.add(currentScore);
+                    highScores.sort(Comparator.reverseOrder());
+                    List<Float> topTen = highScores.subList(0, highScores.size() >= 10 ? 10 : highScores.size()); // Useable Top Ten.
+
+                    // For Debugging.
+                    System.out.println("Current Score: " + currentScore);
+                    System.out.println(Arrays.toString(topTen.toArray()));
+
+                    // Write current record back to file.
+                    FileWriter fw = new FileWriter(highScoreFile, true);
+                    fw.append(time + " " + misclicks + "\n");
+
+                    br.close();
+                    fw.close();
+                } catch (IOException e1) {
+                    // Could not read/write file.
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -113,6 +156,12 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Score function.
+     */
+    private static float score(float time, int misclicks) {
+        return (count - misclicks) / time;
+    }
 
     public static void main(String[] args) {
         launch(args);
