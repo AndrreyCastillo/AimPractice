@@ -52,7 +52,7 @@ I was so fast that you couldn't even see my mouse
     <td align="center">
     <a href="https://github.com/Shumyk">
     <img src="https://avatars3.githubusercontent.com/u/11759050?s=460&v=4" width="100px;" alt="Shumyk"/><br />
-    <sub><b>DaniAcu</b></sub><br />
+    <sub><b>Shumyk</b></sub><br />
     <a href="https://github.com/AndrreyCastillo/AimPractice/commits?author=Shumyk" title="Commits">📖</a>
     </td>
   </tr>
