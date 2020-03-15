@@ -24,7 +24,7 @@ public class Main extends Application {
         }
         if(mainPane != null)
         {
-            primaryStage.setTitle("Hand-Eye Coordination");
+            primaryStage.setTitle("Aim Practice");
             Scene scene = new Scene(mainPane, 500, 500);
             primaryStage.setScene(scene);
             primaryStage.show();
