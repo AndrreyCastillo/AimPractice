@@ -12,14 +12,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-<<<<<<< HEAD
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Aim Practice");
-        Scene scene = new Scene(mainPane, 500, 500);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-=======
         BorderPane mainPane = null;
 
         try
@@ -37,9 +29,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         }
->>>>>>> Setup FXML-File
     }
-
 
     public static void main(String[] args) {
         launch(args);
