@@ -10,7 +10,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller" onKeyPressed="#mainPaneKeyPressed" fx:id="mainPane">
             <top>
                 <VBox>
-                    <Text fx:id="text" text="Practice Your Aim!">
+                    <Text fx:id="text" text="Practice Your Aim!" textAlignment="CENTER">
                         <font>
                             <Font size="40.0" />
                         </font>
