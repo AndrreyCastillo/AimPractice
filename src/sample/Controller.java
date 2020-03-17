@@ -34,6 +34,7 @@ public class Controller {
 
     private int count = 0;
     private int missclicks = 0;
+    private int totalClicks = 20;
     private Date start;
 
 
@@ -100,11 +101,11 @@ public class Controller {
     @FXML
     public void circleMouseClicked(MouseEvent mouseEvent)
     {
-        if(count < 19)
+        if(count < totalClicks - 1)
         {
             //Increment count and set text to count
             ++count;
-            text.setText(" " + count);
+            text.setText(count + "/" + totalClicks);
 
             //randomize circle
             changeCircle(circle, mainPane);
