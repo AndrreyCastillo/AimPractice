@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -19,8 +20,12 @@ public class Controller {
     /*
      * FXML Variables
      */
+	@FXML
+    private Text clicksTracker;
     @FXML
-    private Text text;
+    private Text title;
+    @FXML
+    private VBox homeBox;
     @FXML
     private BorderPane mainPane;
     @FXML
@@ -65,21 +70,26 @@ public class Controller {
     /* When an action is performed on the start button */
     private void startAction() {
 
-        //Clear text
-        text.setText("");
-
-        //Set StartButton to "not visible"
-        startButton.setVisible(false);
+        //Set homeBox to "not visible"
+    	homeBox.setVisible(false);
 
         //Visible FXML Elements considering circles
         circlePane.setVisible(true);
         circle.setVisible(true);
+
+        //Initialize the clicks tracker
+        upgradeClicksTracker();
 
         //randomize first circle
         changeCircle(circle, mainPane);
 
         // whenever the start button is clicked, start the "timer"
         start = new Date(System.currentTimeMillis());
+    }
+
+    private void upgradeClicksTracker()
+    {
+    	clicksTracker.setText(count + "/" + totalClicks);
     }
 
     @FXML
@@ -105,7 +115,7 @@ public class Controller {
         {
             //Increment count and set text to count
             ++count;
-            text.setText(count + "/" + totalClicks);
+            upgradeClicksTracker();
 
             //randomize circle
             changeCircle(circle, mainPane);
@@ -114,7 +124,7 @@ public class Controller {
         {
             //Set not needed elements to not visible
             circlePane.setVisible(false);
-            text.setVisible(false);
+            clicksTracker.setVisible(false);
 
             // subtracts misclicks and count because I think the circles when clicked are counted as the pane
             missclicks -= count;
