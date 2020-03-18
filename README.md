@@ -54,12 +54,19 @@ I was so fast that you couldn't even see my mouse
     <sub><b>Shumyk</b></sub><br/>
     <a href="https://github.com/AndrreyCastillo/AimPractice/commits?author=Shumyk" title="Commits">📖</a>
     </td>
-     <td align="center">
+    <td align="center">
     <a href="https://github.com/t-dogge">
     <img src="https://avatars1.githubusercontent.com/u/22715034?s=460&u=d90736815cb24a30d202c481d375736117237c6b&v=4"  
          width="100px;" alt="t-dogge"/><br />
     <sub><b>T-Dog</b></sub><br/>
     <a href="https://github.com/AndrreyCastillo/AimPractice/commits?author=t-dogge" title="Commits">📖</a>
+    </td>
+    <td align="center">
+    <a href="https://github.com/serpest">
+    <img src="https://avatars1.githubusercontent.com/u/49209517?s=460&u=4f7ed73fb8a16b371e0f050b64d1ca5c9c00fb39&v=4"  
+         width="100px;" alt="serpest"/><br />
+    <sub><b>serpest</b></sub><br/>
+    <a href="https://github.com/AndrreyCastillo/AimPractice/commits?author=serpest" title="Commits">📖</a>
     </td>
   </tr>
 </table>
