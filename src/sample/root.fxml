@@ -1,0 +1,40 @@
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller" onKeyPressed="#mainPaneKeyPressed" fx:id="mainPane">
+            <center>
+                <StackPane>
+                    <children>
+                        <VBox alignment="TOP_CENTER">
+                            <Text fx:id="clicksTracker" text="">
+                                <font>
+                                    <Font size="40.0" />
+                                </font>
+                            </Text>
+                        </VBox>
+                        <Text fx:id="timerText" visible="false">
+                            <font>
+                                <Font size="40.0" />
+                            </font>
+                        </Text>
+                        <Pane fx:id="circlePane" onMouseClicked="#circlePaneMouseClicked" visible="false">
+                            <Circle fx:id="circle" onMouseClicked="#circleMouseClicked" visible="false" radius="10.0" />
+                        </Pane>
+                        <VBox alignment="CENTER" spacing="30" fx:id="homeBox">
+                            <Text fx:id="title" text="Practice your Aim!">
+                                <font>
+                                    <Font size="40.0" />
+                                </font>
+                            </Text>
+                            <Button text="Start" fx:id="startButton" onAction="#startButtonPressed" prefWidth="100.0" prefHeight="50.0" />
+                        </VBox>
+                    </children>
+                </StackPane>
+            </center>
+</BorderPane>
