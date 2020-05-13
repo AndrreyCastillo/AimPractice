@@ -1,12 +1,12 @@
-# AimPractice
+t# AimPractice
 A program that helps users practice their click accuracy
 
 ## Getting Started
-To run, just go into Main.java and run the main(String[] args) method.
+To run, use 'gradle run'.
 
 ### Prerequisites
-* Java SDK 8
-* Intellij IDEA 2019.2.2
+* Java SDK 11+
+* Gradle
 
 ## Screenshots
 (actual size if you're on a 1920x1080 display, I think)
@@ -47,6 +47,12 @@ I was so fast that you couldn't even see my mouse
     <img src="https://avatars2.githubusercontent.com/u/26409015?s=460&v=4" width="100px;" alt="DaniAcu"/><br />
     <sub><b>DaniAcu</b></sub><br/>
     <a href="https://github.com/AndrreyCastillo/AimPractice/commits?author=DaniAcu" title="Commits">📖</a>
+    </td>
+    <td align="center">
+    <a href="https://githu.com/HuskyNator">
+    <img src="https://avatars0.githubusercontent.com/u/17416803?s=460&v=4" width="100px;" alt="HuskyNator"/><br/>
+    <sub><b>HuskyNator</b></sub><br/>
+    <a href="https://githu.com/HuskyNator/AimPractice/commits?authors?author=HuskyNator" title="Commits">📖</a>
     </td>
     <td align="center">
     <a href="https://github.com/Shumyk">
